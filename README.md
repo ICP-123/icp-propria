@@ -1,0 +1,161 @@
+!DOCTYPE html
+html lang=pt-BR
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleICP - Igreja Congregacional de Propriá-SEtitle
+    !-- Configurações PWA para celular --
+    meta name=theme-color content=#1a365d
+    meta name=mobile-web-app-capable content=yes
+    meta name=apple-mobile-web-app-status-bar-style content=black-translucent
+    
+    style
+        root {
+            --primary #1a365d;
+            --secondary #2b6cb0;
+            --accent #d69e2e;
+            --bg #f7fafc;
+            --card-bg #ffffff;
+            --text #2d3748;
+        }
+
+         {
+            box-sizing border-box;
+            margin 0;
+            padding 0;
+            font-family -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color var(--bg);
+            color var(--text);
+            display flex;
+            flex-direction column;
+            min-height 100vh;
+        }
+
+        header {
+            background linear-gradient(135deg, var(--primary), var(--secondary));
+            color white;
+            text-align center;
+            padding 2.5rem 1rem;
+            box-shadow 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size 1.6rem;
+            margin-bottom 0.5rem;
+        }
+
+        header p {
+            font-size 0.95rem;
+            opacity 0.9;
+        }
+
+        main {
+            max-width 600px;
+            width 100%;
+            margin 0 auto;
+            padding 1.5rem 1rem;
+            flex 1;
+        }
+
+        .section-title {
+            font-size 1.2rem;
+            color var(--primary);
+            margin-bottom 1rem;
+            display flex;
+            align-items center;
+            gap 0.5rem;
+        }
+
+        .card-list {
+            display flex;
+            flex-direction column;
+            gap 1rem;
+        }
+
+        .card {
+            background var(--card-bg);
+            border-radius 12px;
+            padding 1.2rem;
+            box-shadow 0 2px 4px rgba(0,0,0,0.05);
+            border-left 5px solid var(--secondary);
+        }
+
+        .card.highlight {
+            border-left-color var(--accent);
+        }
+
+        .card h3 {
+            color var(--primary);
+            font-size 1.1rem;
+            margin-bottom 0.3rem;
+        }
+
+        .card .time {
+            font-weight bold;
+            color var(--secondary);
+            font-size 0.9rem;
+            margin-bottom 0.5rem;
+        }
+
+        .card p {
+            font-size 0.9rem;
+            color #4a5568;
+        }
+
+        footer {
+            text-align center;
+            padding 1.5rem;
+            font-size 0.85rem;
+            color #718096;
+            background #edf2f7;
+            margin-top auto;
+        }
+    style
+head
+body
+
+    header
+        h1ICP - Propriá-SEh1
+        pIgreja Congregacional de Propriáp
+    header
+
+    main
+        h2 class=section-title📅 Programação Semanalh2
+        
+        div class=card-list
+            div class=card
+                h3Culto de Oraçãoh3
+                div class=timeTerças-feirasdiv
+                pMomento de intercessão e busca pela presença de Deus.p
+            div
+
+            div class=card
+                h3Culto de Doutrinah3
+                div class=timeQuintas-feirasdiv
+                pEstudo aprofundado da Palavra de Deus.p
+            div
+
+            div class=card highlight
+                h3Escola Bíblica Dominical (EBD)h3
+                div class=timeDomingos às 0930 hsdiv
+                pCrescimento e aprendizado bíblico para todas as idades.p
+            div
+
+            div class=card highlight
+                h3Culto de Louvor e Adoraçãoh3
+                div class=timeDomingosdiv
+                pCelebração e adoração comunitária ao Senhor.p
+            div
+        div
+    main
+
+    footer
+        p© ICP - Igreja Congregacional de Propriá-SEp
+    footer
+
+body
+html
+
