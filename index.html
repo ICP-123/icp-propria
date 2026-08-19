@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICP - Igreja Congregacional de Propriá-SE</title>
+    <!-- Configurações PWA -->
+    <meta name="theme-color" content="#1a365d">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2b6cb0;
+            --accent: #d69e2e;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin: 1.5rem 0 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary);
+        }
+
+        .card.highlight {
+            border-left-color: var(--accent);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            font-size: 1.05rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .card .time {
+            font-weight: bold;
+            color: var(--secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .card p {
+            font-size: 0.88rem;
+            color: #4a5568;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        input {
+            padding: 0.75rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary);
+        }
+
+        .btn-pix {
+            background-color: var(--accent);
+            color: #1a202c;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .btn-map {
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            background-color: #38a169;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .member-item {
+            background: #fff;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.85rem;
+            color: #718096;
+            background: #edf2f7;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ICP - Propriá-SE</h1>
+        <p>Igreja Congregacional de Propriá</p>
+    </header>
+
+    <main>
+        <!-- PROGRAMAÇÃO -->
+        <h2 class="section-title">📅 Programação Semanal</h2>
+        <div class="card-list">
+            <div class="card">
+                <h3>Culto de Oração</h3>
+                <div class="time">Terças-feiras</div>
+                <p>Momento de intercessão e busca pela presença de Deus.</p>
+            </div>
+            <div class="card">
+                <h3>Culto de Doutrina</h3>
+                <div class="time">Quintas-feiras</div>
+                <p>Estudo aprofundado da Palavra de Deus.</p>
+            </div>
+            <div class="card highlight">
+                <h3>Escola Bíblica Dominical (EBD)</h3>
+                <div class="time">Domingos às 09:30 hs</div>
+                <p>Crescimento e aprendizado bíblico para todas as idades.</p>
+            </div>
+            <div class="card highlight">
+                <h3>Culto de Louvor e Adoração</h3>
+                <div class="time">Domingos</div>
+                <p>Celebração e adoração comunitária ao Senhor.</p>
+            </div>
+        </div>
+
+        <!-- MURAL/CATÁLOGO DE MEMBROS -->
+        <h2 class="section-title">👥 Catálogo de Membros</h2>
+        <div class="card">
+            <form id="memberForm">
+                <div class="form-group">
+                    <input type="text" id="memberName" placeholder="Nome Completo" required>
+                    <input type="text" id="memberBirth" placeholder="Data de Aniversário (Ex: 15/08)">
+                </div>
+                <button type="submit">Cadastrar Membro</button>
+            </form>
+            <div id="membersList" class="card-list" style="margin-top: 1rem;">
+            </div>
+        </div>
+
+        <!-- CONTRIBUIÇÃO (PIX) -->
+        <h2 class="section-title">💳 Dízimos e Ofertas (PIX)</h2>
+        <div class="card">
+            <p><strong>Chave PIX Cadastrada:</strong></p>
+            <p id="pixKeyText" style="font-size: 1.1rem; color: var(--primary); font-weight: bold; margin: 0.5rem 0;">Chave não informada</p>
+            <button class="btn-pix" onclick="updatePixKey()">⚙️ Alterar / Cadastrar Chave PIX</button>
+        </div>
+
+        <!-- LOCALIZAÇÃO -->
+        <h2 class="section-title">📍 Nossa Localização</h2>
+        <div class="card">
+            <p><strong>Endereço:</strong></p>
+            <p>Rua Monsenhor José Curvelo Soares - Bairro N. Sra. de Fátima</p>
+            <p>Propriá - SE</p>
+            <a class="btn-map" href="https://maps.google.com/?q=Rua+Monsenhor+Jose+Curvelo+Soares+Propria+SE" target="_blank">🗺️ Abrir no Google Maps</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© ICP - Igreja Congregacional de Propriá-SE</p>
+    </footer>
+
+    <script>
+        let currentPix = localStorage.getItem('icp_pix') || 'Clique no botão abaixo para cadastrar';
+        document.getElementById('pixKeyText').innerText = currentPix;
+
+        function updatePixKey() {
+            let newPix = prompt("Digite a Chave PIX da Igreja (CNPJ, E-mail, Celular, etc.):", currentPix);
+            if(newPix) {
+                localStorage.setItem('icp_pix', newPix);
+                document.getElementById('pixKeyText').innerText = newPix;
+                alert("Chave PIX atualizada com sucesso!");
+            }
+        }
+
+        const memberForm = document.getElementById('memberForm');
+        const membersList = document.getElementById('membersList');
+
+        let members = JSON.parse(localStorage.getItem('icp_members')) || [];
+
+        function renderMembers() {
+            membersList.innerHTML = '';
+            if(members.length === 0) {
+                membersList.innerHTML = '<p style="font-size:0.85rem; color:#a0aec0;">Nenhum membro cadastrado ainda.</p>';
+                return;
+            }
+            members.forEach((m, index) => {
+                const item = document.createElement('div');
+                item.className = 'member-item';
+                item.innerHTML = `
+                    <div>
+                        <strong>${m.name}</strong><br>
+                        <small style="color:#718096;">🎂 Aniversário: ${m.birth || 'Não informado'}</small>
+                    </div>
+                `;
+                membersList.appendChild(item);
+            });
+        }
+
+        memberForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('memberName').value;
+            const birth = document.getElementById('memberBirth').value;
+
+            members.push({ name, birth });
+            localStorage.setItem('icp_members', JSON.stringify(members));
+            
+            document.getElementById('memberName').value = '';
+            document.getElementById('memberBirth').value = '';
+
+            renderMembers();
+        });
+
+        renderMembers();
+    </script>
+</body>
+</html>
