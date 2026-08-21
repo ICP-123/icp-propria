@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICP - Igreja Congregacional de Propriá-SE</title>
-    <!-- Configurações PWA -->
     <meta name="theme-color" content="#1a365d">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <style>
         :root {
@@ -17,13 +15,14 @@
             --bg: #f7fafc;
             --card-bg: #ffffff;
             --text: #2d3748;
+            --danger: #e53e3e;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
@@ -42,15 +41,8 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        header h1 {
-            font-size: 1.5rem;
-            margin-bottom: 0.3rem;
-        }
-
-        header p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
+        header h1 { font-size: 1.5rem; margin-bottom: 0.3rem; }
+        header p { font-size: 0.9rem; opacity: 0.9; }
 
         main {
             max-width: 600px;
@@ -65,8 +57,8 @@
             color: var(--primary);
             margin: 1.5rem 0 0.8rem 0;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.5rem;
         }
 
         .card-list {
@@ -81,28 +73,25 @@
             padding: 1rem 1.2rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             border-left: 5px solid var(--secondary);
+            position: relative;
         }
 
-        .card.highlight {
-            border-left-color: var(--accent);
-        }
+        .card.highlight { border-left-color: var(--accent); }
+        .card h3 { color: var(--primary); font-size: 1.05rem; margin-bottom: 0.2rem; }
+        .card .time { font-weight: bold; color: var(--secondary); font-size: 0.85rem; margin-bottom: 0.4rem; }
+        .card p { font-size: 0.88rem; color: #4a5568; }
 
-        .card h3 {
-            color: var(--primary);
-            font-size: 1.05rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .card .time {
-            font-weight: bold;
-            color: var(--secondary);
-            font-size: 0.85rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .card p {
-            font-size: 0.88rem;
-            color: #4a5568;
+        .btn-delete {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
         }
 
         .form-group {
@@ -112,11 +101,12 @@
             margin-bottom: 0.8rem;
         }
 
-        input {
+        input, textarea {
             padding: 0.75rem;
             border: 1px solid #cbd5e0;
             border-radius: 8px;
             font-size: 0.9rem;
+            width: 100%;
         }
 
         button {
@@ -127,51 +117,36 @@
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        button:hover {
-            background-color: var(--primary);
-        }
-
-        .btn-pix {
-            background-color: var(--accent);
-            color: #1a202c;
-            width: 100%;
-            margin-top: 0.5rem;
-        }
-
-        .btn-map {
-            display: inline-block;
-            text-align: center;
-            text-decoration: none;
-            background-color: #38a169;
-            color: white;
-            padding: 0.75rem;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 0.5rem;
             width: 100%;
         }
+
+        .btn-admin {
+            background-color: #4a5568;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            width: auto;
+        }
+
+        .btn-pix { background-color: var(--accent); color: #1a202c; margin-top: 0.5rem; }
+        .btn-map { display: block; text-align: center; text-decoration: none; background-color: #38a169; color: white; padding: 0.75rem; border-radius: 8px; font-weight: bold; margin-top: 0.5rem; }
 
         .member-item {
             background: #fff;
             padding: 0.8rem 1rem;
             border-radius: 8px;
             border: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.85rem;
-            color: #718096;
-            background: #edf2f7;
-            margin-top: 2rem;
+        .admin-panel {
+            background: #e2e8f0;
+            border: 2px dashed var(--primary);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
         }
+
+        footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #718096; background: #edf2f7; margin-top: 2rem; }
     </style>
 </head>
 <body>
@@ -182,29 +157,28 @@
     </header>
 
     <main>
-        <!-- PROGRAMAÇÃO -->
-        <h2 class="section-title">📅 Programação Semanal</h2>
-        <div class="card-list">
-            <div class="card">
-                <h3>Culto de Oração</h3>
-                <div class="time">Terças-feiras</div>
-                <p>Momento de intercessão e busca pela presença de Deus.</p>
-            </div>
-            <div class="card">
-                <h3>Culto de Doutrina</h3>
-                <div class="time">Quintas-feiras</div>
-                <p>Estudo aprofundado da Palavra de Deus.</p>
-            </div>
-            <div class="card highlight">
-                <h3>Escola Bíblica Dominical (EBD)</h3>
-                <div class="time">Domingos às 09:30 hs</div>
-                <p>Crescimento e aprendizado bíblico para todas as idades.</p>
-            </div>
-            <div class="card highlight">
-                <h3>Culto de Louvor e Adoração</h3>
-                <div class="time">Domingos</div>
-                <p>Celebração e adoração comunitária ao Senhor.</p>
-            </div>
+        <!-- CABEÇALHO DA PROGRAMAÇÃO COM BOTÃO ADMIN -->
+        <div class="section-title">
+            <h2>📅 Programação Semanal</h2>
+            <button class="btn-admin" onclick="toggleAdmin()">🔒 Modo Admin</button>
+        </div>
+
+        <!-- PAINEL ADMINISTRATIVO (ESCONDIDO POR PADRÃO) -->
+        <div id="adminPanel" class="admin-panel">
+            <h3 style="margin-bottom: 0.8rem; color: var(--primary);">⚙️ Painel de Cadastro de Cultos</h3>
+            <form id="cultoForm">
+                <div class="form-group">
+                    <input type="text" id="cultoNome" placeholder="Nome do Culto / Evento" required>
+                    <input type="text" id="cultoHorario" placeholder="Dia e Horário (Ex: Terças às 19:30h)" required>
+                    <textarea id="cultoDesc" placeholder="Descrição rápida..." rows="2"></textarea>
+                </div>
+                <button type="submit" style="background-color: #38a169;">+ Adicionar Culto</button>
+            </form>
+        </div>
+
+        <!-- LISTA DE CULTOS -->
+        <div id="cultosList" class="card-list">
+            <!-- Os cultos serão carregados aqui pelo JavaScript -->
         </div>
 
         <!-- MURAL/CATÁLOGO DE MEMBROS -->
@@ -217,8 +191,7 @@
                 </div>
                 <button type="submit">Cadastrar Membro</button>
             </form>
-            <div id="membersList" class="card-list" style="margin-top: 1rem;">
-            </div>
+            <div id="membersList" class="card-list" style="margin-top: 1rem;"></div>
         </div>
 
         <!-- CONTRIBUIÇÃO (PIX) -->
@@ -244,21 +217,101 @@
     </footer>
 
     <script>
-        let currentPix = localStorage.getItem('icp_pix') || 'Clique no botão abaixo para cadastrar';
-        document.getElementById('pixKeyText').innerText = currentPix;
+        // SENHA DO MODO ADMIN (Pode alterar aqui se quiser)
+        const SENHA_ADMIN = "1234";
+        let isAdmin = false;
 
-        function updatePixKey() {
-            let newPix = prompt("Digite a Chave PIX da Igreja (CNPJ, E-mail, Celular, etc.):", currentPix);
-            if(newPix) {
-                localStorage.setItem('icp_pix', newPix);
-                document.getElementById('pixKeyText').innerText = newPix;
-                alert("Chave PIX atualizada com sucesso!");
+        // CULTOS PADRÃO (Caso esteja vazio pela primeira vez)
+        const defaultCultos = [
+            { id: 1, nome: "Culto de Oração", horario: "Terças-feiras às 19:30h", desc: "Momento de intercessão e busca pela presença de Deus." },
+            { id: 2, nome: "Culto de Doutrina", horario: "Quintas-feiras às 19:30h", desc: "Estudo aprofundado da Palavra de Deus." },
+            { id: 3, nome: "Escola Bíblica Dominical (EBD)", horario: "Domingos às 09:30h", desc: "Crescimento e aprendizado bíblico para todas as idades." },
+            { id: 4, nome: "Culto de Louvor e Adoração", horario: "Domingos às 18:00h", desc: "Celebração e adoração comunitária ao Senhor." }
+        ];
+
+        let cultos = JSON.parse(localStorage.getItem('icp_cultos')) || defaultCultos;
+
+        function renderCultos() {
+            const list = document.getElementById('cultosList');
+            list.innerHTML = '';
+
+            cultos.forEach((c, index) => {
+                const card = document.createElement('div');
+                card.className = 'card' + (index >= 2 ? ' highlight' : '');
+                
+                let btnExcluir = isAdmin ? `<button class="btn-delete" onclick="deleteCulto(${c.id})">🗑️ Excluir</button>` : '';
+
+                card.innerHTML = `
+                    ${btnExcluir}
+                    <h3>${c.nome}</h3>
+                    <div class="time">${c.horario}</div>
+                    <p>${c.desc}</p>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function toggleAdmin() {
+            if (!isAdmin) {
+                let pass = prompt("Digite a senha de administrador:");
+                if (pass === SENHA_ADMIN) {
+                    isAdmin = true;
+                    document.getElementById('adminPanel').style.display = 'block';
+                    alert("Modo Administrador ativado!");
+                } else if(pass !== null) {
+                    alert("Senha incorreta!");
+                }
+            } else {
+                isAdmin = false;
+                document.getElementById('adminPanel').style.display = 'none';
+            }
+            renderCultos();
+        }
+
+        document.getElementById('cultoForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nome = document.getElementById('cultoNome').value;
+            const horario = document.getElementById('cultoHorario').value;
+            const desc = document.getElementById('cultoDesc').value;
+
+            cultos.push({ id: Date.now(), nome, horario, desc });
+            localStorage.setItem('icp_cultos', JSON.stringify(cultos));
+
+            document.getElementById('cultoNome').value = '';
+            document.getElementById('cultoHorario').value = '';
+            document.getElementById('cultoDesc').value = '';
+
+            renderCultos();
+        });
+
+        function deleteCulto(id) {
+            if(confirm("Deseja realmente remover este culto?")) {
+                cultos = cultos.filter(c => c.id !== id);
+                localStorage.setItem('icp_cultos', JSON.stringify(cultos));
+                renderCultos();
             }
         }
 
+        // LÓGICA DO PIX
+        let currentPix = localStorage.getItem('icp_pix') || 'Clique para cadastrar a chave';
+        document.getElementById('pixKeyText').innerText = currentPix;
+
+        function updatePixKey() {
+            let pass = prompt("Digite a senha de admin para alterar o PIX:");
+            if (pass === SENHA_ADMIN) {
+                let newPix = prompt("Digite a Chave PIX:", currentPix);
+                if(newPix) {
+                    localStorage.setItem('icp_pix', newPix);
+                    document.getElementById('pixKeyText').innerText = newPix;
+                }
+            } else if(pass !== null) {
+                alert("Senha incorreta!");
+            }
+        }
+
+        // LÓGICA DE MEMBROS
         const memberForm = document.getElementById('memberForm');
         const membersList = document.getElementById('membersList');
-
         let members = JSON.parse(localStorage.getItem('icp_members')) || [];
 
         function renderMembers() {
@@ -267,15 +320,10 @@
                 membersList.innerHTML = '<p style="font-size:0.85rem; color:#a0aec0;">Nenhum membro cadastrado ainda.</p>';
                 return;
             }
-            members.forEach((m, index) => {
+            members.forEach((m) => {
                 const item = document.createElement('div');
                 item.className = 'member-item';
-                item.innerHTML = `
-                    <div>
-                        <strong>${m.name}</strong><br>
-                        <small style="color:#718096;">🎂 Aniversário: ${m.birth || 'Não informado'}</small>
-                    </div>
-                `;
+                item.innerHTML = `<strong>${m.name}</strong><br><small style="color:#718096;">🎂 Aniversário: ${m.birth || 'Não informado'}</small>`;
                 membersList.appendChild(item);
             });
         }
@@ -284,16 +332,15 @@
             e.preventDefault();
             const name = document.getElementById('memberName').value;
             const birth = document.getElementById('memberBirth').value;
-
             members.push({ name, birth });
             localStorage.setItem('icp_members', JSON.stringify(members));
-            
             document.getElementById('memberName').value = '';
             document.getElementById('memberBirth').value = '';
-
             renderMembers();
         });
 
+        // INICIALIZAÇÃO
+        renderCultos();
         renderMembers();
     </script>
 </body>
